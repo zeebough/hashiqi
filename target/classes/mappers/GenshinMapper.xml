@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ghtt.socialplatform.dao.gameDao.GenshinDao">
+    <resultMap type="com.ghtt.socialplatform.domain.games.Genshin" id="Genshin">
+        <result column="userId" property="userId"/>
+        <result column="sex" property="sex"/>
+        <result column="school" property="school"/>
+        <result column="campus" property="campus"/>
+        <result column="college" property="college"/>
+        <result column="major" property="major"/>
+        <result column="zone" property="zone"/>
+        <result column="characters" property="characters"/>
+        <result column="worldLevel" property="worldLevel"/>
+        <result column="adventureLevel" property="adventureLevel"/>
+        <result column="resourceSharable" property="resourceSharable"/>
+        <result column="des" property="des"/>
+
+    </resultMap>
+
+
+    <select id="selectPage" resultType="Genshin">
+        select social_platform.genshin.userId,sex,major,school,campus,college,zone,characters,worldLevel,adventureLevel,resourceSharable,des
+        from social_platform.genshin left join
+        (select userId,sex,major,school,campus,college from social_platform.user) as b
+        on genshin.userId=b.userId
+        ${ew.customSqlSegment}
+<!--        <where>-->
+<!--            <if test="userId!=null">-->
+<!--                userId=#{userId}-->
+<!--            </if>-->
+<!--            <if test="sex!=null">-->
+<!--                and sex=#{sex}-->
+<!--            </if>-->
+<!--            <if test="major!=null">-->
+<!--                and major=#{major}-->
+<!--            </if>-->
+<!--            <if test="school!=null">-->
+<!--                and school=#{school}-->
+<!--            </if>-->
+<!--            <if test="campus!=null">-->
+<!--                and campus=#{campus}-->
+<!--            </if>-->
+<!--            <if test="college!=null">-->
+<!--                and college=#{college}-->
+<!--            </if>-->
+
+<!--            <if test="zone!=null">-->
+<!--                and zone=#{zone}-->
+<!--            </if>-->
+<!--            <if test="characters!=null">-->
+<!--                and characters like #{characters}-->
+<!--            </if>-->
+<!--            <if test="worldLevel!=null">-->
+<!--                and worldLevel=#{worldLevel}-->
+<!--            </if>-->
+<!--            <if test="adventureLevel!=null">-->
+<!--                and adventureLevel=#{adventureLevel}-->
+<!--            </if>-->
+<!--            <if test="resourceSharable!=null">-->
+<!--                and resourceSharable=#{resourceSharable}-->
+<!--            </if>-->
+
+<!--        </where>-->
+    </select>
+
+</mapper>
